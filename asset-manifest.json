@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/phone-validation/static/css/main.31d6cfe0.css",
-    "main.js": "/phone-validation/static/js/main.339f337a.js",
+    "main.js": "/phone-validation/static/js/main.ea0370b0.js",
     "static/js/787.d3383aaf.chunk.js": "/phone-validation/static/js/787.d3383aaf.chunk.js",
     "index.html": "/phone-validation/index.html",
-    "main.339f337a.js.map": "/phone-validation/static/js/main.339f337a.js.map",
+    "main.ea0370b0.js.map": "/phone-validation/static/js/main.ea0370b0.js.map",
     "787.d3383aaf.chunk.js.map": "/phone-validation/static/js/787.d3383aaf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.339f337a.js"
+    "static/js/main.ea0370b0.js"
   ]
 }
