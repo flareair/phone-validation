@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { parsePhoneNumber } from "libphonenumber-js";
+import { parsePhoneNumber, AsYouType } from "libphonenumber-js";
 
 import "./App.css";
 
+// see https://www.npmjs.com/package/libphonenumber-js
+// "Validate phone number" section for details
 const POSSIBLE_IS_VALID = true;
 
 const calculateValidity = (parsedPhone) => {
@@ -18,8 +20,6 @@ function App() {
   const [countryCode, setCountryCode] = useState("");
   const [isValid, setIsValid] = useState(null);
 
-  // const countries = ["GB", "IE", "RU"];
-
   const countries = [
     {
       code: "GB",
@@ -33,7 +33,26 @@ function App() {
       code: "RU",
       teleCode: "+7",
     },
+    {
+      code: "US",
+      teleCode: "+1",
+    },
+    {
+      code: "UA",
+      teleCode: "+380",
+    },
   ];
+
+  const formatNumber = (value) => {
+    let output = value;
+    try {
+      output = new AsYouType(country).input(output);
+    } catch (e) {
+      console.error(e);
+    }
+
+    return output;
+  };
 
   const onCountryChange = (event) => {
     setCountry(event.target.value);
@@ -57,11 +76,11 @@ function App() {
       console.log(parsedPhone);
       console.log(parsedPhone.isValid(), parsedPhone.isPossible());
 
-      if (calculateValidity(parsedPhone)) {
-        parsedPhone.country &&
-          !externalCountry &&
-          setCountry(parsedPhone.country);
+      parsedPhone.country &&
+        !externalCountry &&
+        setCountry(parsedPhone.country);
 
+      if (calculateValidity(parsedPhone)) {
         setIsValid(true);
         setPhone(parsedPhone.nationalNumber);
         setCountryCode(parsedPhone.countryCallingCode);
@@ -123,7 +142,7 @@ function App() {
             type="tel"
             className={`form-control ${isValid === false ? "is-invalid" : ""}`}
             id="phone"
-            value={phone}
+            value={formatNumber(phone)}
             onChange={onPhoneChange}
             onBlur={onPhoneBlur}
             onPaste={onPhonePaste}
