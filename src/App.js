@@ -6,7 +6,7 @@ import "./App.css";
 
 // see https://www.npmjs.com/package/libphonenumber-js
 // "Validate phone number" section for details
-const POSSIBLE_IS_VALID = true;
+const POSSIBLE_IS_VALID = false;
 
 const calculateValidity = (parsedPhone) => {
   return parsedPhone.isValid() || POSSIBLE_IS_VALID
@@ -44,6 +44,8 @@ function App() {
   ];
 
   const formatNumber = (value) => {
+    console.log("formatter: ", country);
+
     let output = value;
     try {
       output = new AsYouType(country).input(output);
